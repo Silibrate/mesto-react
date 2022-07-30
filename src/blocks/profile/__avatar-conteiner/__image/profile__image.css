@@ -1,0 +1,15 @@
+.profile__image {
+  margin-right: 31px;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+@media screen and (max-width:668px) {
+  .profile__image {
+    align-self: center;
+    margin-right: 0;
+  }
+}

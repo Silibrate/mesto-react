@@ -1,0 +1,32 @@
+.popup__close_photo {
+  position: initial;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  background-image: url('../../../../images/CloseIcon.svg');
+  background-repeat: no-repeat;
+  margin-left: 97%;
+  margin-top: -34px;
+  cursor: pointer;
+}
+
+@media screen and (max-width:668px) {
+  .popup__close_photo {
+    width: 20px;
+    height: 20px;
+    background-image: url('../../../../images/CloseIconmin.svg');
+  }
+}
+
+@media screen and (max-width:614px) {
+  .popup__close_photo {
+    margin-left: 81%;
+  }
+}
+
+.popup__close_photo:hover {
+  opacity: 0.6;
+  transition: 0.5s ease;
+}

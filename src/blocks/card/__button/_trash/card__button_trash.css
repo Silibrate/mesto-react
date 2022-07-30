@@ -1,0 +1,12 @@
+.card__button_trash {
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  margin-top: 20px;
+  right: 20px;
+  width: 18px;
+  height: 19px;
+  border: none;
+  background-image: url('../../../../images/Trash.svg');
+  position: absolute;
+}

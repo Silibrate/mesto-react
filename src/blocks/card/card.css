@@ -1,0 +1,12 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #FFFFFF;
+  color: #000000;
+  max-width: 282px;
+  border-radius: 3%;
+  justify-self: center;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+}

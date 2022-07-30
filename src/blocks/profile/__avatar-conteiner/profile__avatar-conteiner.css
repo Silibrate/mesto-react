@@ -1,0 +1,28 @@
+.profile__avatar-conteiner {
+  position: relative;
+  height: 120px;
+  width: 120px;
+  margin-right: 31px;
+}
+
+.profile__avatar-conteiner::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  background: rgba(0, 0, 0, 0.8) url(../../../images/redactorProfile.svg) no-repeat center center;
+  opacity: 0;
+}
+
+.profile__avatar-conteiner:hover::before {
+  opacity: 1;
+}
+
+@media screen and (max-width:668px) {
+  .profile__avatar-conteiner {
+    align-self: center;
+    margin-right: 0;
+  }
+}

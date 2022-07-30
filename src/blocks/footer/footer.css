@@ -1,0 +1,12 @@
+.footer {
+  margin-top: 67px;
+  padding-bottom: 60px;
+}
+
+@media screen and (max-width:520px) {
+  .footer {
+    padding-bottom: 36px;
+    padding-top: 48px;
+    margin-top: 0;
+  }
+}

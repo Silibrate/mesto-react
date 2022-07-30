@@ -1,0 +1,25 @@
+.profile__button-full {
+  margin-top: 37px;
+  background-image: url('../../../images/AddButtonfull.svg');
+  background-repeat: no-repeat;
+  border: none;
+  background-color: #000000;
+  padding: 0;
+  width: 150px;
+  height: 50px;
+}
+
+@media screen and (max-width:668px) {
+  .profile__button-full {
+    background-image: url('../../../images/AddButtonfull2.svg');
+    width: 282px;
+    align-self: center;
+    margin-top: 7px;
+  }
+}
+
+.profile__button-full:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.5s ease;
+}

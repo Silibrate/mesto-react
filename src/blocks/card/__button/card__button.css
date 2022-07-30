@@ -1,0 +1,17 @@
+.card__button {
+  background-color: #FFFFFF;
+  background-repeat: no-repeat;
+  border: none;
+  flex-shrink: 0;
+  padding: 0;
+  width: 22px;
+  height: 19px;
+  margin-right: 20px;
+  margin-bottom: 3px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.card__button:hover {
+  opacity: 0.5;
+}

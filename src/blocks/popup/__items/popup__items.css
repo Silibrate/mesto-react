@@ -1,0 +1,23 @@
+.popup__items {
+  position: relative;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+@media screen and (max-width:920px) {
+  .popup__items {
+    max-width: 625px;
+  }
+}
+
+@media screen and (max-width:668px) {
+  .popup__items {
+    max-width: 425px;
+  }
+}
+
+@media screen and (max-width:614px) {
+  .popup__items {
+    max-width: 320px;
+  }
+}

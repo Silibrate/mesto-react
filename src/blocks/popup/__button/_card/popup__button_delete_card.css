@@ -1,0 +1,5 @@
+@media screen and (max-width:768px) {
+  .popup__button_delete_card{
+    margin-top: 0px;
+  }
+}
