@@ -10,7 +10,7 @@ import ImagePopup from './ImagePopup';
 
 function App() {
 
-  const [cardInfo, setCardInfo] = React.useState('');
+  const [cardInfo, setCardInfo] = React.useState({});
 
   function handleImageClick(card) {
     setCardInfo(card);
@@ -54,9 +54,7 @@ function App() {
         onCardClick={handlePhotoPopupClick}
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
-        onEditAvatar={handleEditAvatarClick}>
-      </Main>
-
+        onEditAvatar={handleEditAvatarClick} />
 
       <Footer />
 

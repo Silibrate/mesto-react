@@ -12,7 +12,7 @@
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  UserInfo() {
+  getUserInfo() {
     return fetch(this.url + `/users/me`, {
       method: 'GET',
       headers: this.headers
