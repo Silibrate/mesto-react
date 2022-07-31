@@ -1,11 +1,11 @@
-export default class Api {
+ class Api {
 
   constructor(config) {
     this.url = config.url;
     this.headers = config.headers;
   }
 
-  #handleResponse = (res) => {
+  handleResponse = (res) => {
     if (res.ok) {
       return res.json();
     }
@@ -17,7 +17,7 @@ export default class Api {
       method: 'GET',
       headers: this.headers
     })
-      .then(this.#handleResponse)
+      .then(this.handleResponse)
   }
 
   updateInfo(data) {
@@ -29,7 +29,7 @@ export default class Api {
         about: data.userjob
       })
     })
-      .then(this.#handleResponse)
+      .then(this.handleResponse)
   }
 
   getInitialCards() {
@@ -38,7 +38,7 @@ export default class Api {
       headers: this.headers,
 
     })
-      .then(this.#handleResponse)
+      .then(this.handleResponse)
   }
 
   createCard(data) {
@@ -50,7 +50,7 @@ export default class Api {
         link: data.photo
       })
     })
-      .then(this.#handleResponse)
+      .then(this.handleResponse)
   }
 
   deleteCard(data) {
@@ -60,7 +60,7 @@ export default class Api {
       headers: this.headers,
       body: JSON.stringify({ id })
     })
-      .then(this.#handleResponse)
+      .then(this.handleResponse)
   }
 
   likeCard(data) {
@@ -69,7 +69,7 @@ export default class Api {
       method: 'PUT',
       headers: this.headers,
     })
-      .then(this.#handleResponse)
+      .then(this.handleResponse)
   }
 
   dislikeCard(data) {
@@ -79,7 +79,7 @@ export default class Api {
       headers: this.headers,
       body: JSON.stringify({ id })
     })
-      .then(this.#handleResponse)
+      .then(this.handleResponse)
   }
 
   updateAvatar(data) {
@@ -88,10 +88,21 @@ export default class Api {
       headers: this.headers,
       body: JSON.stringify(data)
     })
-      .then(this.#handleResponse)
+      .then(this.handleResponse)
   }
 
   getAllNeededData() {
     return Promise.all([this.getInitialCards(), this.UserInfo()])
   }
 }
+
+const config = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-42',
+  headers: {
+    authorization: '470ad620-2a28-423a-83e5-333c76ae2cdf',
+    'Content-Type': 'application/json'
+  }
+}
+const api = new Api(config)
+
+export default api

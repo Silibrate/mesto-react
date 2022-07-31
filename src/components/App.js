@@ -3,48 +3,19 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import React, { useState } from 'react';
-import Api from '../utils/api';
-import Card from './Card';
+
 import ImagePopup from './ImagePopup';
 
 
 
 function App() {
 
-  const config = {
-    url: 'https://mesto.nomoreparties.co/v1/cohort-42',
-    headers: {
-      authorization: '470ad620-2a28-423a-83e5-333c76ae2cdf',
-      'Content-Type': 'application/json'
-    }
+  const [cardInfo, setCardInfo] = React.useState('');
+
+  function handleImageClick(card) {
+    setCardInfo(card);
   }
 
-  const api = new Api(config)
-
-  const [profileInfo, setProfileInfo] = React.useState([]);
-  const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    api.UserInfo()
-      .then((data) => {
-        setProfileInfo(data)
-      });
-
-    api.getInitialCards()
-      .then((data) => {
-        setCards(data);
-
-      })
-  }, [])
-
-  const [imageLink, setImageLink] = React.useState('');
-  const [imageTitle, setImageTitle] = React.useState('');
-
-  function handleImageClick(link, title) {
-    setImageLink(link);
-    setImageTitle(title);
-  }
-  
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -62,9 +33,9 @@ function App() {
     setIsAddPlacePopupOpen(true)
   }
 
-   const handlePhotoPopupClick=()=>{
-     setSelectedCard(true)
-   }
+  const handlePhotoPopupClick = () => {
+    setSelectedCard(true)
+  }
 
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
@@ -76,16 +47,27 @@ function App() {
   return (
     <div className="body">
 
-      <Header></Header>
+      <Header />
 
-      <Main userName={profileInfo.name} userDescription={profileInfo.about} userAvatar={profileInfo.avatar} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick}>
-        <Card  imageWatch={handleImageClick} onCardClick={handlePhotoPopupClick} cards={cards}></Card>
+      <Main
+        imageWatch={handleImageClick}
+        onCardClick={handlePhotoPopupClick}
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        onEditAvatar={handleEditAvatarClick}>
       </Main>
 
 
-      <Footer></Footer>
+      <Footer />
 
-      <PopupWithForm onClose={closeAllPopups} isOpen={isEditProfilePopupOpen} selectorSaveButton='popup__button-edit' selector='popup-edit' title='Редактировать профиль' close='popup__close_edit' subTitle='Сохранить'   >
+      <PopupWithForm
+        onClose={closeAllPopups}
+        isOpen={isEditProfilePopupOpen}
+        selectorSaveButton='popup__button-edit'
+        selector='popup-edit'
+        title='Редактировать профиль'
+        close='popup__close_edit'
+        subTitle='Сохранить'   >
         <>
           <input type="text" placeholder="Имя" className="popup__input popup__input-name " name="username" id="name"
             minLength="2" maxLength="40" required />
@@ -97,7 +79,15 @@ function App() {
         </>
       </PopupWithForm>
 
-      <PopupWithForm onClose={closeAllPopups} isOpen={isAddPlacePopupOpen} selectorSaveButton='popup__button_save_card' selector='popup-add' title='Добавить картинку' close='popup__close_add' subTitle='Сохранить'>
+      <PopupWithForm
+        onClose={closeAllPopups}
+        isOpen={isAddPlacePopupOpen}
+        selectorSaveButton='popup__button_save_card'
+        selector='popup-add'
+        title='Добавить картинку'
+        close='popup__close_add'
+        subTitle='Сохранить'>
+
         <>
           <input type="text" placeholder="Название" className="popup__input popup__input-title popup__input-title_card "
             name="cardname" id="card-name" required minLength="2" maxLength="30" />
@@ -108,16 +98,33 @@ function App() {
         </>
       </PopupWithForm>
 
-      <PopupWithForm onClose={closeAllPopups} isOpen={isEditAvatarPopupOpen} selectorSaveButton='popup__button_save_avatar' selector='popup_avatar' title='Обновить аватар' close='popup__close_confirm' subTitle='Сохранить' >
+      <PopupWithForm
+        onClose={closeAllPopups}
+        isOpen={isEditAvatarPopupOpen}
+        selectorSaveButton='popup__button_save_avatar'
+        selector='popup_avatar'
+        title='Обновить аватар'
+        close='popup__close_confirm'
+        subTitle='Сохранить' >
+
         <input type="url" placeholder="Ссылка на картинку"
           className="popup__input popup__input-title popup__input-title_type-avatar" id="avatar" name="avatar" required />
         <span className="error avatar-error" id="avatar_title"></span>
       </PopupWithForm>
 
-      <PopupWithForm selectorSaveButton='popup__button_delete_card' selector='popup_confirm' title='Вы уверены?' close='popup__close_confirm' subTitle='Да'  >
+      <PopupWithForm
+        selectorSaveButton='popup__button_delete_card'
+        selector='popup_confirm'
+        title='Вы уверены?'
+        close='popup__close_confirm'
+        subTitle='Да'  >
       </PopupWithForm>
 
-      <ImagePopup imageTitle={imageTitle} imageLink={imageLink} isOpen={selectedCard} onClose={closeAllPopups} ></ImagePopup>
+      <ImagePopup
+        cardInfo={cardInfo}
+        isOpen={selectedCard}
+        onClose={closeAllPopups} >
+      </ImagePopup>
 
       <div className="popup popup_confirm">
         <div className="popup__container">
