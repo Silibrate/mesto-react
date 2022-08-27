@@ -10,3 +10,7 @@
   background-image: url('../../../../images/Trash.svg');
   position: absolute;
 }
+
+.card__button_trash_hidden{
+  display: none;
+}

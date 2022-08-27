@@ -1,4 +1,4 @@
- class Api {
+class Api {
 
   constructor(config) {
     this.url = config.url;
