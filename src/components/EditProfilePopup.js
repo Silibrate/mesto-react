@@ -14,7 +14,7 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser }) => {
   React.useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser,isOpen]);
 
   function heandleChangeName(e) {
     setName(e.target.value)
@@ -39,15 +39,14 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser }) => {
       title='Редактировать профиль'
       close='popup__close_edit'
       subTitle='Сохранить'   >
-      <>
-        <input type="text" placeholder="Имя" className="popup__input popup__input-name " name="username" id="name"
-          minLength="2" maxLength="40" required value={name || ''} onChange={heandleChangeName} />
-        <span className="error name-error" id="errorname"></span>
-        <input type="text" placeholder="Деятельность"
-          className="popup__input popup__input-name popup__input-name_type_user-job" id="job" name="userjob" minLength="2"
-          maxLength="200" required value={description || ''} onChange={heandleChangeAbout} />
-        <span className="error job-error" id="errorjob"></span>
-      </>
+
+      <input type="text" placeholder="Имя" className="popup__input popup__input-name " name="username" id="name"
+        minLength="2" maxLength="40" required value={name || ''} onChange={heandleChangeName} />
+      <span className="error name-error" id="errorname"></span>
+      <input type="text" placeholder="Деятельность"
+        className="popup__input popup__input-name popup__input-name_type_user-job" id="job" name="userjob" minLength="2"
+        maxLength="200" required value={description || ''} onChange={heandleChangeAbout} />
+      <span className="error job-error" id="errorjob"></span>
     </PopupWithForm>
   );
 }

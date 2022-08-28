@@ -20,13 +20,14 @@ function App() {
     api.getUserInfo()
       .then((data) => {
         setCurrentUser(data)
-      });
+      })
+      .catch((err) => console.log(err));
   }, [])
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(false)
+  const [selectedCard, setSelectedCard] = useState({ name: '', link: '' })
 
   function handleImageClick(card) {
     setCardInfo(card);
@@ -42,6 +43,7 @@ function App() {
         setCurrentUser(info);
         closeAllPopups();
       })
+      .catch((err) => console.log(err));
   }
 
   function handleUpdateAvatar(avatarLink) {
@@ -50,6 +52,7 @@ function App() {
         setCurrentUser(info)
         closeAllPopups();
       })
+      .catch((err) => console.log(err));
   }
 
   const handleEditProfileClick = () => {
@@ -61,14 +64,14 @@ function App() {
   }
 
   const handlePhotoPopupClick = () => {
-    setSelectedCard(true)
+    setSelectedCard({ name: cardInfo.name, link: cardInfo.link })
   }
 
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
-    setIsAddPlacePopupOpen(false)
-    setIsEditAvatarPopupOpen(false)
-    setSelectedCard(false)
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setSelectedCard({ name: '', link: '' })
   }
 
   const [cards, setCards] = React.useState([]);
@@ -77,6 +80,7 @@ function App() {
       .then((data) => {
         setCards(data);
       })
+      .catch((err) => console.log(err));
   }, [])
 
   function handleAddPlaceSubmit(card) {
@@ -85,6 +89,7 @@ function App() {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
+      .catch((err) => console.log(err));
   }
 
   function handleCardLike(card) {
@@ -92,11 +97,13 @@ function App() {
     if (!isLiked) {
       api.likeCard(card._id, !isLiked).then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-      });
+      })
+        .catch((err) => console.log(err));
     } else {
       api.dislikeCard(card._id, !isLiked).then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-      });
+      })
+        .catch((err) => console.log(err));
     }
   }
 
@@ -106,6 +113,7 @@ function App() {
       .then((deleteCard) => {
         setCards((state) => state.filter((deleteCard) => deleteCard._id !== card._id));
       })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -137,7 +145,7 @@ function App() {
           selector='popup_confirm'
           title='Вы уверены?'
           close='popup__close_confirm'
-          subTitle='Да'  >
+          subTitle='Да'>
         </PopupWithForm>
 
         <ImagePopup

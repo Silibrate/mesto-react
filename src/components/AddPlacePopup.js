@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 const AddPlacePopup = ({ onClose, isOpen, onAddNewCard }) => {
@@ -8,6 +8,11 @@ const AddPlacePopup = ({ onClose, isOpen, onAddNewCard }) => {
     cardname: place,
     photo: link
   }
+
+  useEffect(() => {
+    setPlace("");
+    setLink("");
+  }, [isOpen]);
 
   function heandleChangePlace(e) {
     setPlace(e.target.value)
@@ -20,7 +25,6 @@ const AddPlacePopup = ({ onClose, isOpen, onAddNewCard }) => {
   function handleSubmit(e) {
     e.preventDefault();
     onAddNewCard(newCard);
-    e.target.reset();
   }
 
   return (
@@ -34,14 +38,12 @@ const AddPlacePopup = ({ onClose, isOpen, onAddNewCard }) => {
       close='popup__close_add'
       subTitle='Сохранить'>
 
-      <>
-        <input onChange={heandleChangePlace} type="text" placeholder="Название" className="popup__input popup__input-title popup__input-title_card "
-          name="cardname" id="card-name" required minLength="2" maxLength="30" />
-        <span className="error card-name-error" id="card-name-error"></span>
-        <input onChange={heandleChangeLink} type="url" placeholder="Ссылка на картинку"
-          className="popup__input popup__input-title popup__input-title_type-link" id="link" name="photo" required />
-        <span className="error link-error" id="card_title"></span>
-      </>
+      <input onChange={heandleChangePlace} value={'' || place} type="text" placeholder="Название" className="popup__input popup__input-title popup__input-title_card "
+        name="cardname" id="card-name" required minLength="2" maxLength="30" />
+      <span className="error card-name-error" id="card-name-error"></span>
+      <input onChange={heandleChangeLink} value={link || ''} type="url" placeholder="Ссылка на картинку"
+        className="popup__input popup__input-title popup__input-title_type-link" id="link" name="photo" required />
+      <span className="error link-error" id="card_title"></span>
     </PopupWithForm>
   );
 }
